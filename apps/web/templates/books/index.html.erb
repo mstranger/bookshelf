@@ -1,16 +1,34 @@
-<h2>All books</h2>
+<h2 class="text-center mb-4">All books</h2>
 
 <% if books.any? %>
-  <div id="books">
-    <% books.each do |book| %>
-      <div class="book">
-        <h2><%= book.title %></h2>
-        <p><%= book.author %></p>
-      </div>
-    <% end %>
-  </div>
+  <table class="table table-striped table-borderless table-sm" id="books">
+    <thead class="table-books-title">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Author</th>
+        <th scope="col">Title</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% books.each_with_index do |book, idx| %>
+        <tr class="book">
+          <th scope="row"><%= idx + 1 %></th>
+          <td><%= book.author %></td>
+          <td><%= book.title %></td>
+          <td class="books-actions">
+            <%= link_to 'Show', '#' %>
+            <span class="divider"></span>
+            <%= link_to 'Edit', '#' %>
+            <span class="divider"></span>
+            <%= link_to 'Delete', '#' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% else %>
-  <p class="placeholder">There are no books yet.</p>
+  <p class="placeholder alert-info p-4">There are no books yet.</p>
 <% end %>
 
 <a href="/books/new">New book</a>
