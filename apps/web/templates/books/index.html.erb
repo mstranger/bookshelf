@@ -12,7 +12,9 @@
     </thead>
     <tbody>
       <!--
-        TODO: how to use routes.book_path helpers in rspec tests?
+        TODO:
+          1) DELETE request without using form
+          2) No route in tests when use routes.book_path helper
       -->
       <% books.each_with_index do |book, idx| %>
         <tr class="book">
@@ -24,7 +26,11 @@
             <span class="divider"></span>
             <%= link_to 'Edit', '#' %>
             <span class="divider"></span>
-            <%= link_to 'Delete', '#' %>
+            <%=
+              form_for :book, "/books/#{book.id}", method: :delete, class: 'book-delete' do
+                submit 'Delete', class: 'book-delete-submit'
+              end
+            %>
           </td>
         </tr>
       <% end %>
