@@ -1,0 +1,22 @@
+<h2 class="mb-4">Info about book</h2>
+
+<div class="book">
+  <div class="row">
+    <div class="col-md-1">
+      <span class="marked">Title:&nbsp;</span>
+    </div>
+    <div class="col-md-auto">
+      <%= book.title %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1">
+      <span class="marked">Author:&nbsp;</span>
+    </div>
+    <div class="col-md-auto">
+      <%= book.author %>
+    </div>
+  </div>
+  <hr>
+  <%= link_to 'Back to books', routes.books_path %>
+</div>

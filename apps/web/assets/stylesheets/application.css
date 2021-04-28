@@ -50,3 +50,7 @@
 .divider::before {
   content: '|';
 }
+
+.marked {
+  font-weight: bold;
+}

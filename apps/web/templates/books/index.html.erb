@@ -11,13 +11,16 @@
       </tr>
     </thead>
     <tbody>
+      <!--
+        TODO: how to use routes.book_path helpers in rspec tests?
+      -->
       <% books.each_with_index do |book, idx| %>
         <tr class="book">
           <th scope="row"><%= idx + 1 %></th>
           <td><%= book.author %></td>
           <td><%= book.title %></td>
           <td class="books-actions">
-            <%= link_to 'Show', '#' %>
+            <%= link_to 'Show', "/books/#{book.id}" %>
             <span class="divider"></span>
             <%= link_to 'Edit', '#' %>
             <span class="divider"></span>
