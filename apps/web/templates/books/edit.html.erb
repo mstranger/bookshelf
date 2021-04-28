@@ -1,0 +1,37 @@
+<h2 class="mb-4">Edit book</h2>
+
+<div class="row">
+  <div class="col-sm-8">
+    <% unless params.valid? %>
+      <div class="errors alert-danger mb-2">
+        <p class="errors-title">There was a problem with your submission</p>
+        <ul class="no-list">
+          <% params.error_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%=
+      form_for :book, "/books/#{book.id}", method: :patch do
+        div class: 'input form-group' do
+          label      :title
+          text_field :title, value: book.title, class: 'form-control'
+        end
+
+        div class: 'input form-group' do
+          label      :author
+          text_field :author, value: book.author, class: 'form-control'
+        end
+
+        div class: 'controls text-center pt-2' do
+          submit 'Update Book', class: 'btn btn-primary'
+        end
+      end
+    %>
+
+    <hr>
+    <%= link_to 'Back to books', routes.books_path %>
+  </div>
+</div>
