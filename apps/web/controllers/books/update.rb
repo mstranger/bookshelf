@@ -7,6 +7,8 @@ module Web
         expose :book
 
         params do
+          required(:id) { int? }
+
           required(:book).schema do
             required(:title).filled(:str?)
             required(:author).filled(:str?)
@@ -14,9 +16,6 @@ module Web
         end
 
         def call(params)
-          # p '-----'
-          # p params[:id]
-          # p '-----'
           @book = BookRepository.new.find(params[:id])
           return self.status = 404 unless @book
 
