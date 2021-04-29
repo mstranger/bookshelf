@@ -1,6 +1,8 @@
 root to: 'home#index'
 resources :books
 
+get '/not_implemented', to: 'home#not_implemented'
+
 # get '/books',     to: 'books#index'
 # get '/books/new', to: 'books#new'
 # post '/books',    to: 'books#create'
