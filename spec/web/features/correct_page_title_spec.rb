@@ -1,0 +1,30 @@
+require 'features_helper'
+
+RSpec.describe 'Display correct title for' do
+  it 'root page' do
+    visit '/'
+    expect(page).to have_title('Bookshelf')
+  end
+
+  it 'books page' do
+    visit '/books'
+    expect(page).to have_title('Bookshelf | All books')
+  end
+
+  it 'new book page' do
+    visit '/books/new'
+    expect(page).to have_title('Bookshelf | New book')
+  end
+
+  it 'show book page' do
+    book = BookRepository.new.create(title: 'Sample', author: 'John Doe')
+    visit '/books/' + book.id.to_s
+    expect(page).to have_title('Bookshelf | Book info')
+  end
+
+  it 'edit book page' do
+    book = BookRepository.new.create(title: 'Sample', author: 'John Doe')
+    visit '/books/' + book.id.to_s + '/edit'
+    expect(page).to have_title('Bookshelf | Edit book')
+  end
+end
