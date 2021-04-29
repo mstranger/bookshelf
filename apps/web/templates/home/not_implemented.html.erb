@@ -4,8 +4,14 @@
     <p class="text-lg">Just stub page</p>
 
     <hr>
-    <!-- TODO: inline blocked -->
-    <a href="#" id="go-back">Go Back</a>
+    <!--
+      NOTE: by default inline JavaScript is NOT allowed.
+
+      To enable it need add directive: script-src ‘unsafe-inline’
+      in the file apps/web/application.rb
+      change setting security.content_security_policy
+    -->
+    <a href="#" onclick="window.history.back()">Go Back</a>
   </div>
 </div>
 
