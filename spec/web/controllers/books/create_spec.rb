@@ -6,6 +6,7 @@ RSpec.describe Web::Controllers::Books::Create, type: :action do
     repository.clear
   end
 
+  # TODO: refactor
   context 'with valid params' do
     let(:params) { Hash[book: { title: 'Confident Ruby', author: 'Avdi Grimm' }] }
 
@@ -22,6 +23,12 @@ RSpec.describe Web::Controllers::Books::Create, type: :action do
 
       expect(response[0]).to eq(302)
       expect(response[1]['Location']).to eq('/books')
+    end
+
+    it 'has a flash notice' do
+      response = action.call(params)
+      flash = action.exposures[:flash]
+      expect(flash[:notice]).to eq('New book was added.')
     end
   end
 

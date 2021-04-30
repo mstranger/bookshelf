@@ -10,6 +10,7 @@ module Web
           return self.status = 422 unless book
 
           repository.delete(book.id)
+          flash[:notice] = 'Book was deleted.'
           redirect_to routes.books_path
         end
       end

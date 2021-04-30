@@ -5,7 +5,7 @@ RSpec.describe 'Delete a book' do
 
   before do
     repo.clear
-    
+
     repo.create(title: 'TDD', author: 'Kent Beck')
   end
 
@@ -18,5 +18,6 @@ RSpec.describe 'Delete a book' do
 
     expect(page).to have_current_path('/books')
     expect(page).to have_content('There are no books yet.')
+    expect(page).to have_content('Book was deleted')
   end
 end

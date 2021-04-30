@@ -23,6 +23,12 @@ RSpec.describe Web::Controllers::Books::Destroy, type: :action do
       expect(response[0]).to eq(302)
       expect(response[1]['Location']).to eq('/books')
     end
+
+    it 'has a flash notice' do
+      response = action.call(params)
+      flash = action.exposures[:flash]
+      expect(flash[:notice]).to eq('Book was deleted.')
+    end
   end
 
   context 'with invalid id' do

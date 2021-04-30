@@ -17,8 +17,9 @@ RSpec.describe 'Add a book' do
 
     expect(page).to have_current_path('/books')
     expect(page).to have_content('Example book')
+    expect(page).to have_content('New book was added')
   end
-  
+
   it 'displays list of errors when params contains errors' do
     visit '/books/new'
 

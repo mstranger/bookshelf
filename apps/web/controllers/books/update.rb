@@ -22,6 +22,7 @@ module Web
           if params.valid?
             BookRepository.new.update(params[:id], params[:book])
 
+            flash[:notice] = 'Book was updated.'
             redirect_to routes.books_path
           else
             @book = Book.new(params[:book]) # save form field data

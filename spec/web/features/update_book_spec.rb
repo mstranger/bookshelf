@@ -23,6 +23,7 @@ RSpec.describe 'Update a book' do
       expect(page).to have_current_path('/books')
       expect(page).to have_content('Edited title')
       expect(page).to have_content('Edited author')
+      expect(page).to have_content('Book was updated')
     end
   end
 

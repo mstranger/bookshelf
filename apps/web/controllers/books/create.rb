@@ -17,6 +17,7 @@ module Web
           if params.valid?
             BookRepository.new.create(params[:book])
 
+            flash[:notice] = 'New book was added.'
             redirect_to routes.books_path
           else
             self.status = 422

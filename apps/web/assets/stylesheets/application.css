@@ -2,15 +2,14 @@
   color: steelblue !important;
 }
 
+.navbar-nav {
+  flex-direction: row;
+}
+
 .nav-link.signin {
   border-left: 1px solid lightgray;
 }
 
 .text-lg {
   font-size: 1.125rem;
-}
-
-.with-border-left {
-  border-left: 1px solid gray;
-  padding-left: 0.5rem;
 }

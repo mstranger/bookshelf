@@ -26,6 +26,12 @@ RSpec.describe Web::Controllers::Books::Update, type: :action do
       expect(repo.last.title).to eq('Edited title')
       expect(repo.last.author).to eq('Edited author')
     end
+
+    it 'has a flash notice' do
+      response = action.call(params)
+      flash = action.exposures[:flash]
+      expect(flash[:notice]).to eq('Book was updated.')
+    end
   end
 
   context 'with invalid id' do
