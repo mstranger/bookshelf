@@ -3,7 +3,7 @@ module Web
     class ApplicationLayout
       include Web::Layout
 
-      Web::Views::TITLE = 'Bookshelf'
+      Web::Views::TITLE = 'Bookshelf'.freeze
 
       def page_title
         TITLE

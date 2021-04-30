@@ -5,11 +5,22 @@ require:
 AllCops:
   TargetRubyVersion: 2.7
   NewCops: enable
+  DisplayStyleGuide: true
   Exclude:
     - vendor/bundle/**/*
     - spec/spec_helper.rb
+    - apps/web/application.rb
+
+Style/Documentation:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false
 
 Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/EmptyMethod:
   Enabled: false
 
 Style/BlockDelimiters:
@@ -18,6 +29,9 @@ Style/BlockDelimiters:
 
 Layout/LineLength:
   Max: 120
+
+Metrics/AbcSize:
+  Max: 25
 
 RSpec/ImplicitExpect:
   EnforcedStyle: should
