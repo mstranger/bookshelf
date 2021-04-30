@@ -6,7 +6,7 @@ RSpec.describe Web::Views::Books::Edit, type: :view do
   let(:rendered)  { view.render }
 
   context 'when no errors' do
-    let(:params) { OpenStruct.new(valid?: true)}
+    let(:params) { OpenStruct.new(valid?: true) }
 
     it 'shows form filled with book attributes' do
       expect(rendered).to include(book.title)

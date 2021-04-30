@@ -14,7 +14,7 @@ RSpec.describe Web::Controllers::Books::Create, type: :action do
       action.call(params)
       book = repository.last
 
-      expect(book.id).to_not be_nil
+      expect(book.id).not_to be_nil
       expect(book.title).to eq(params.dig(:book, :title))
     end
 
@@ -26,7 +26,7 @@ RSpec.describe Web::Controllers::Books::Create, type: :action do
     end
 
     it 'has a flash notice' do
-      response = action.call(params)
+      action.call(params)
       flash = action.exposures[:flash]
       expect(flash[:notice]).to eq('New book was added.')
     end

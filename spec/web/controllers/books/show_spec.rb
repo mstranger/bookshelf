@@ -1,15 +1,14 @@
 RSpec.describe Web::Controllers::Books::Show, type: :action do
   let(:action) { described_class.new }
   let(:repo) { BookRepository.new }
+  let(:book) { repo.create(title: 'Sample', author: 'John Doe') }
 
   before do
     repo.clear
-
-    @book = repo.create(title: 'Sample', author: 'John Doe')
   end
 
   context 'with valid params' do
-    let(:params) { Hash[id: @book.id]}
+    let(:params) { Hash[id: book.id] }
 
     it 'returns ok' do
       response = action.call(params)
@@ -18,12 +17,12 @@ RSpec.describe Web::Controllers::Books::Show, type: :action do
 
     it 'expose book' do
       action.call(params)
-      expect(action.exposures[:book]).to eq(@book)
+      expect(action.exposures[:book]).to eq(book)
     end
   end
 
   context 'with invalid params' do
-    let(:params) { Hash[id: @book.id + 1] }
+    let(:params) { Hash[id: book.id + 1] }
 
     it 'returns not_found' do
       response = action.call(params)

@@ -1,6 +1,6 @@
 require 'features_helper'
 
-RSpec.describe 'Update a book' do
+RSpec.describe 'Update a book', type: :feature do
   let(:repo) { BookRepository.new }
   let(:book) { repo.last }
 

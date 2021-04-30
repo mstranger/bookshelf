@@ -1,6 +1,6 @@
 require 'features_helper'
 
-RSpec.describe 'Add a book' do
+RSpec.describe 'Add a book', type: :feature do
   after do
     BookRepository.new.clear
   end
@@ -27,7 +27,7 @@ RSpec.describe 'Add a book' do
       click_button 'Create'
     end
 
-    expect(current_path).to eq('/books')
+    expect(page).to have_current_path('/books')
 
     expect(page).to have_content('There was a problem with your submission')
     expect(page).to have_content('Title must be filled')

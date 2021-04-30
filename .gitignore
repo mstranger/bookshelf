@@ -3,4 +3,5 @@
 /tmp
 .env.local
 .env.*.local
+.byebug_history
 /.gems

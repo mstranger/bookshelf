@@ -2,11 +2,11 @@ RSpec.describe Web::Controllers::Books::Index, type: :action do
   let(:action) { described_class.new }
   let(:params) { Hash[] }
   let(:repo) { BookRepository.new }
+  let(:book) { repo.create(title: 'TDD', author: 'Keng Beck') }
 
   before do
     repo.clear
-
-    @book = repo.create(title: 'TDD', author: 'Keng Beck')
+    book
   end
 
   it 'is successful' do
@@ -16,6 +16,6 @@ RSpec.describe Web::Controllers::Books::Index, type: :action do
 
   it 'exposes all books' do
     action.call(params)
-    expect(action.exposures[:books]).to eq([@book])
+    expect(action.exposures[:books]).to eq([book])
   end
 end

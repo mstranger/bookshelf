@@ -1,0 +1,43 @@
+require:
+  - rubocop-performance
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 2.7
+  NewCops: enable
+  Exclude:
+    - vendor/bundle/**/*
+    - spec/spec_helper.rb
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/BlockDelimiters:
+  Exclude:
+    - spec/**/*
+
+Layout/LineLength:
+  Max: 120
+
+RSpec/ImplicitExpect:
+  EnforcedStyle: should
+
+RSpec/BeforeAfterAll:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Max: 5
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 6
+
+RSpec/Capybara/FeatureMethods:
+  EnabledMethods: [scenario]
+
+RSpec/ExampleLength:
+  Exclude:
+    - spec/**/*
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*

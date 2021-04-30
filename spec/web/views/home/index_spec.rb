@@ -1,16 +1,18 @@
+require_relative '../../shared_variables'
+
 RSpec.describe Web::Views::Home::Index, type: :view do
   let(:flash)      { Hash[] }
   let(:exposures)  { Hash[format: :html, flash: flash] }
   let(:template)   { Hanami::View::Template.new('apps/web/templates/home/index.html.erb') }
   let(:view)       { described_class.new(template, exposures) }
   let(:rendered)   { view.render }
-  let(:page_title) { Web::Views::TITLE }
 
   it 'exposes #format' do
     expect(view.format).to eq exposures.fetch(:format)
   end
 
   it 'contains application name' do
+    page_title = Web::Views::TITLE
     expect(rendered).to include(page_title)
   end
 
@@ -20,7 +22,7 @@ RSpec.describe Web::Views::Home::Index, type: :view do
 
   context 'with navbar partial' do
     it 'contains logo and auth path' do
-      logo = %{<a class="navbar-brand logo" href="/">Bookshelf</a>}
+      logo = %(<a class="navbar-brand logo" href="/">Bookshelf</a>)
       expect(rendered).to include(logo)
       expect(rendered).to include('Sign Up')
       expect(rendered).to include('Sign In')
@@ -28,22 +30,21 @@ RSpec.describe Web::Views::Home::Index, type: :view do
   end
 
   context 'with flash_messages partial' do
-    let(:notice) { 'Success rendering' }
-    let(:alert)  { 'Fail rendering' }
+    include_context 'shared variables'
 
     context 'when success' do
-      let(:flash) { Hash[notice: notice] }
+      let(:flash) { Hash[notice: flash_notice] }
 
       it 'display notice' do
-        expect(rendered).to include(notice)
+        expect(rendered).to include(flash_notice)
       end
     end
 
     context 'when fail' do
-      let(:flash) { Hash[alert: alert] }
+      let(:flash) { Hash[alert: flash_alert] }
 
       it 'display alert' do
-        expect(rendered).to include(alert)
+        expect(rendered).to include(flash_alert)
       end
     end
   end

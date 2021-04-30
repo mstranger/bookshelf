@@ -1,6 +1,6 @@
 require 'features_helper'
 
-RSpec.describe 'Display correct title for' do
+RSpec.describe 'Display correct title for', type: :feature do
   it 'root page' do
     visit '/'
     expect(page).to have_title('Bookshelf')
@@ -18,13 +18,13 @@ RSpec.describe 'Display correct title for' do
 
   it 'show book page' do
     book = BookRepository.new.create(title: 'Sample', author: 'John Doe')
-    visit '/books/' + book.id.to_s
+    visit "/books/#{book.id}"
     expect(page).to have_title('Bookshelf | Book info')
   end
 
   it 'edit book page' do
     book = BookRepository.new.create(title: 'Sample', author: 'John Doe')
-    visit '/books/' + book.id.to_s + '/edit'
+    visit "/books/#{book.id}/edit"
     expect(page).to have_title('Bookshelf | Edit book')
   end
 end

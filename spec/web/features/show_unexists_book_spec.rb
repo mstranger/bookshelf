@@ -1,6 +1,6 @@
 require 'features_helper'
 
-RSpec.describe 'Visit book page that does not exsit' do
+RSpec.describe 'Visit book page that does not exsit', type: :feature do
   let(:repo) { BookRepository.new }
   let(:book) { repo.last }
 

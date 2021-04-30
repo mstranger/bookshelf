@@ -26,7 +26,7 @@ RSpec.describe Web::Views::Books::Index, type: :view do
     end
 
     it 'hides the placeholder message' do
-      expect(rendered).to_not include('<p class="placeholder">There are no books yet.</p>')
+      expect(rendered).not_to include('<p class="placeholder">There are no books yet.</p>')
     end
   end
 end

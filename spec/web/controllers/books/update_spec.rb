@@ -11,7 +11,7 @@ RSpec.describe Web::Controllers::Books::Update, type: :action do
   end
 
   context 'with valid id' do
-    let(:data)   { Hash[title: 'Edited title', author: 'Edited author'] }
+    let(:data) { Hash[title: 'Edited title', author: 'Edited author'] }
 
     it 'is successful and redirect' do
       response = action.call(params)
@@ -28,14 +28,14 @@ RSpec.describe Web::Controllers::Books::Update, type: :action do
     end
 
     it 'has a flash notice' do
-      response = action.call(params)
+      action.call(params)
       flash = action.exposures[:flash]
       expect(flash[:notice]).to eq('Book was updated.')
     end
   end
 
   context 'with invalid id' do
-    let(:data)   { Hash[title: '', author: ''] }
+    let(:data) { Hash[title: '', author: ''] }
 
     it 'return error' do
       response = action.call(params)

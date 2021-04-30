@@ -1,6 +1,6 @@
 require 'features_helper'
 
-RSpec.describe 'Delete a book' do
+RSpec.describe 'Delete a book', type: :feature do
   let(:repo) { BookRepository.new }
 
   before do
