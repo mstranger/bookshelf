@@ -8,18 +8,18 @@ class UserRepository < Hanami::Repository
   end
 
   def find_with_books(id)
-    aggregate(:books).where(id: id).as(User).one
+    aggregate(:books).where(id: id).map_to(User).one
   end
 
   def add_book(user, data)
     assoc(:books, user).add(data)
   end
 
-  def remove_book(user, id)
-    assoc(:books, user).remove(id)
+  def remove_book(id)
+    BookRepository.new.delete(id)
   end
 
-  def books_count(author)
-    assoc(:books, author).count
+  def books_count(user)
+    assoc(:books, user).count
   end
 end
