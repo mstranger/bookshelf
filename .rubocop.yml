@@ -33,6 +33,10 @@ Layout/LineLength:
 Metrics/AbcSize:
   Max: 25
 
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+
 RSpec/ImplicitExpect:
   EnforcedStyle: should
 
@@ -49,9 +53,5 @@ RSpec/Capybara/FeatureMethods:
   EnabledMethods: [scenario]
 
 RSpec/ExampleLength:
-  Exclude:
-    - spec/**/*
-
-Metrics/BlockLength:
   Exclude:
     - spec/**/*

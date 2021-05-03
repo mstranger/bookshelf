@@ -1,8 +1,8 @@
 RSpec.describe Web::Controllers::Books::Index, type: :action do
-  let(:action) { described_class.new }
-  let(:params) { Hash[] }
-  let(:repo) { BookRepository.new }
-  let(:book) { repo.create(title: 'TDD', author: 'Keng Beck') }
+  let(:action)    { described_class.new }
+  let(:repo)      { BookRepository.new }
+  let(:book)      { repo.create(title: 'TDD', author: 'Keng Beck') }
+  let(:params)    { Hash[] }
 
   before do
     repo.clear

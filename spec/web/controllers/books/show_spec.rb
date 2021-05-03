@@ -1,22 +1,19 @@
 RSpec.describe Web::Controllers::Books::Show, type: :action do
   let(:action) { described_class.new }
-  let(:repo) { BookRepository.new }
-  let(:book) { repo.create(title: 'Sample', author: 'John Doe') }
+  let(:repo)   { BookRepository.new }
+  let(:book)   { repo.create(title: 'Sample', author: 'John Doe') }
 
-  before do
-    repo.clear
-  end
+  before { repo.clear }
 
   context 'with valid params' do
-    let(:params) { Hash[id: book.id] }
+    let(:params)    { Hash[id: book.id] }
+    let!(:response) { action.call(params) }
 
     it 'returns ok' do
-      response = action.call(params)
       expect(response[0]).to eq(200)
     end
 
     it 'expose book' do
-      action.call(params)
       expect(action.exposures[:book]).to eq(book)
     end
   end
@@ -26,6 +23,7 @@ RSpec.describe Web::Controllers::Books::Show, type: :action do
 
     it 'returns not_found' do
       response = action.call(params)
+
       expect(response[0]).to eq(404)
     end
   end

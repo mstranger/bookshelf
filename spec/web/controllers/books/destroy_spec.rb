@@ -6,24 +6,21 @@ RSpec.describe Web::Controllers::Books::Destroy, type: :action do
   before { repo.clear }
 
   context 'with valid id' do
-    let(:params) { Hash[id: book.id] }
+    let(:params)    { Hash[id: book.id] }
+    let!(:response) { action.call(params) }
 
     it 'deletes a book from repository' do
-      action.call(params)
-
       expect(repo.all.count).to eq(0)
     end
 
     it 'redirects to the books listing' do
-      response = action.call(id: book.id)
-
       expect(response[0]).to eq(302)
       expect(response[1]['Location']).to eq('/books')
     end
 
     it 'has a flash notice' do
-      action.call(params)
       flash = action.exposures[:flash]
+
       expect(flash[:notice]).to eq('Book was deleted.')
     end
   end

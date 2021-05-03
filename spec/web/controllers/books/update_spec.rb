@@ -1,53 +1,46 @@
 RSpec.describe Web::Controllers::Books::Update, type: :action do
   let(:action) { described_class.new }
   let(:repo)   { BookRepository.new }
-  let(:book)   { repo.last }
-  let(:params) { Hash[id: book.id, book: data] }
+  let(:book)   { Hash[title: 'Confident Ruby', author: 'Avdi Grimm'] }
+  let(:params) { Hash[id: repo.last.id, book: data] }
 
   before do
     repo.clear
-
-    repo.create(title: 'Confident Ruby', author: 'Avdi Grimm')
+    repo.create(book)
   end
 
   context 'with valid id' do
-    let(:data) { Hash[title: 'Edited title', author: 'Edited author'] }
+    let(:data)      { Hash[title: 'Edited title', author: 'Edited author'] }
+    let!(:response) { action.call(params) }
 
     it 'is successful and redirect' do
-      response = action.call(params)
-
       expect(response[0]).to eq(302)
       expect(response[1]['Location']).to eq('/books')
     end
 
     it 'updates database record' do
-      action.call(params)
-
       expect(repo.last.title).to eq('Edited title')
       expect(repo.last.author).to eq('Edited author')
     end
 
     it 'has a flash notice' do
-      action.call(params)
       flash = action.exposures[:flash]
+
       expect(flash[:notice]).to eq('Book was updated.')
     end
   end
 
   context 'with invalid id' do
-    let(:data) { Hash[title: '', author: ''] }
+    let(:data)      { Hash[title: '', author: ''] }
+    let!(:response) { action.call(params) }
 
     it 'return error' do
-      response = action.call(params)
-
       expect(response[0]).to eq(422)
     end
 
     it 'does not change database record' do
-      action.call(params)
-
-      expect(repo.last.title).to eq('Confident Ruby')
-      expect(repo.last.author).to eq('Avdi Grimm')
+      expect(repo.last.title).to eq(book[:title])
+      expect(repo.last.author).to eq(book[:author])
     end
   end
 end

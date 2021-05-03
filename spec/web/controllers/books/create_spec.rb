@@ -1,47 +1,42 @@
 RSpec.describe Web::Controllers::Books::Create, type: :action do
+  let(:book)   { Hash[title: 'Confident Ruby', author: 'Avdi Grimm'] }
   let(:action) { described_class.new }
-  let(:repository) { BookRepository.new }
+  let(:repo)   { BookRepository.new }
 
-  before do
-    repository.clear
-  end
+  before { repo.clear }
 
-  # TODO: refactor
   context 'with valid params' do
-    let(:params) { Hash[book: { title: 'Confident Ruby', author: 'Avdi Grimm' }] }
+    let(:params)    { Hash[book: book] }
+    let!(:response) { action.call(params) }
 
     it 'creates a new book' do
-      action.call(params)
-      book = repository.last
+      book = repo.last
 
       expect(book.id).not_to be_nil
       expect(book.title).to eq(params.dig(:book, :title))
     end
 
     it 'redirects the user to the books listing' do
-      response = action.call(params)
-
       expect(response[0]).to eq(302)
       expect(response[1]['Location']).to eq('/books')
     end
 
     it 'has a flash notice' do
-      action.call(params)
       flash = action.exposures[:flash]
+
       expect(flash[:notice]).to eq('New book was added.')
     end
   end
 
   context 'with invalid params' do
     let(:params) { Hash[book: {}] }
+    let!(:response) { action.call(params) }
 
     it 'returns HTTP client error' do
-      response = action.call(params)
       expect(response[0]).to eq(422)
     end
 
     it 'dumps errors in params' do
-      action.call(params)
       errors = action.params.errors
 
       expect(errors.dig(:book, :title)).to eq(['is missing'])

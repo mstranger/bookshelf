@@ -7,7 +7,6 @@ RSpec.describe Web::Controllers::Books::Edit, type: :action do
 
   before do
     repo.clear
-
     repo.create(title: 'TDD', author: 'Keng Beck')
   end
 
