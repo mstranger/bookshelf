@@ -18,6 +18,15 @@
     </div>
   </div>
   <hr>
+  <div class="row">
+    <div class="col-md-1">
+      <span class="marked">User:&nbsp;</span>
+    </div>
+    <div class="col-md-auto">
+      <%= UserRepository.new.find(book.user_id).email %>
+    </div>
+  </div>
+  <hr>
   <%= link_to 'Back to books', routes.books_path %>
   <span class="divider"></span>
   <%= link_to 'Edit', "/books/#{book.id}/edit" %>

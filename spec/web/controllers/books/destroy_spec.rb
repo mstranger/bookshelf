@@ -1,7 +1,8 @@
 RSpec.describe Web::Controllers::Books::Destroy, type: :action do
   let(:action) { described_class.new }
   let(:repo)   { BookRepository.new }
-  let(:book)   { repo.create(title: 'TDD', author: 'Keng Beck') }
+  let(:user)   { UserRepository.new.create(email: 'some@mail.com') }
+  let(:book)   { repo.create(user_id: user.id, title: 'TDD', author: 'Keng Beck') }
 
   before { repo.clear }
 

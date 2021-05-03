@@ -1,4 +1,5 @@
 RSpec.describe Web::Controllers::Books::Create, type: :action do
+  let(:user)   { UserRepository.new.create(email: 'some@mail.com') }
   let(:book)   { Hash[title: 'Confident Ruby', author: 'Avdi Grimm'] }
   let(:action) { described_class.new }
   let(:repo)   { BookRepository.new }
@@ -6,7 +7,7 @@ RSpec.describe Web::Controllers::Books::Create, type: :action do
   before { repo.clear }
 
   context 'with valid params' do
-    let(:params)    { Hash[book: book] }
+    let(:params)    { Hash[book: book.merge(user_id: user.id)] }
     let!(:response) { action.call(params) }
 
     it 'creates a new book' do
@@ -41,6 +42,7 @@ RSpec.describe Web::Controllers::Books::Create, type: :action do
 
       expect(errors.dig(:book, :title)).to eq(['is missing'])
       expect(errors.dig(:book, :author)).to eq(['is missing'])
+      expect(errors.dig(:book, :user_id)).to eq(['is missing'])
     end
   end
 end

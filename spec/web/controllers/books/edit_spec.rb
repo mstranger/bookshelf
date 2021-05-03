@@ -1,13 +1,14 @@
 RSpec.describe Web::Controllers::Books::Edit, type: :action do
-  let(:repo)   { BookRepository.new }
-  let(:book)   { repo.last }
-  let(:action) { described_class.new }
-  let(:params) { Hash[id: book.id] }
+  let(:user)    { UserRepository.new.create(email: 'some@mail.com') }
+  let(:repo)    { BookRepository.new }
+  let(:book)    { repo.last }
+  let(:action)  { described_class.new }
+  let(:params)  { Hash[id: book.id] }
   let(:invalid) { Hash[id: book.id + 1] }
 
   before do
     repo.clear
-    repo.create(title: 'TDD', author: 'Keng Beck')
+    repo.create(user_id: user.id, title: 'TDD', author: 'Keng Beck')
   end
 
   it 'is successful' do

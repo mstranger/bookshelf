@@ -1,6 +1,8 @@
 require 'features_helper'
 
 RSpec.describe 'Add a book', type: :feature do
+  let(:user) { UserRepository.new.create(email: 'some@mail.com') }
+
   after do
     BookRepository.new.clear
   end
@@ -11,6 +13,7 @@ RSpec.describe 'Add a book', type: :feature do
     within 'form#book-form' do
       fill_in 'Title',  with: 'Example book'
       fill_in 'Author', with: 'Some author'
+      select user.email, from: 'book-user-id'
 
       click_button 'Create'
     end

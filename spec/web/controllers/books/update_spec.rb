@@ -1,4 +1,5 @@
 RSpec.describe Web::Controllers::Books::Update, type: :action do
+  let(:user)   { UserRepository.new.create(email: 'some@mail.com') }
   let(:action) { described_class.new }
   let(:repo)   { BookRepository.new }
   let(:book)   { Hash[title: 'Confident Ruby', author: 'Avdi Grimm'] }
@@ -6,11 +7,11 @@ RSpec.describe Web::Controllers::Books::Update, type: :action do
 
   before do
     repo.clear
-    repo.create(book)
+    repo.create(book.merge(user_id: user.id))
   end
 
   context 'with valid id' do
-    let(:data)      { Hash[title: 'Edited title', author: 'Edited author'] }
+    let(:data)      { Hash[user_id: user.id, title: 'Edited title', author: 'Edited author'] }
     let!(:response) { action.call(params) }
 
     it 'is successful and redirect' do
@@ -41,6 +42,14 @@ RSpec.describe Web::Controllers::Books::Update, type: :action do
     it 'does not change database record' do
       expect(repo.last.title).to eq(book[:title])
       expect(repo.last.author).to eq(book[:author])
+    end
+
+    it 'dumps errors in params' do
+      errors = action.params.errors
+
+      expect(errors.dig(:book, :title)).to eq(['must be filled'])
+      expect(errors.dig(:book, :author)).to eq(['must be filled'])
+      expect(errors.dig(:book, :user_id)).to eq(['is missing'])
     end
   end
 end

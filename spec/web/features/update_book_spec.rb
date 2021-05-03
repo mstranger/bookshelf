@@ -1,13 +1,14 @@
 require 'features_helper'
 
 RSpec.describe 'Update a book', type: :feature do
+  let(:user) { UserRepository.new.create(email: 'some@mail.com') }
   let(:repo) { BookRepository.new }
   let(:book) { repo.last }
 
   before do
     repo.clear
 
-    repo.create(title: 'TDD', author: 'Kent Beck')
+    repo.create(user_id: user.id, title: 'TDD', author: 'Kent Beck')
   end
 
   context 'with valid data' do

@@ -1,12 +1,13 @@
 require 'features_helper'
 
 RSpec.describe 'Delete a book', type: :feature do
+  let(:user) { UserRepository.new.create(email: 'some@mail.com') }
   let(:repo) { BookRepository.new }
 
   before do
     repo.clear
 
-    repo.create(title: 'TDD', author: 'Kent Beck')
+    repo.create(user_id: user.id, title: 'TDD', author: 'Kent Beck')
   end
 
   it 'removes the given book' do
