@@ -4,12 +4,17 @@ This is a starter Hanami project with additional steps and actions.
 
 ## What is done
 
-- `:books` resource (show, update and delete books)
+- `:books` completed resource and model
 - bootstrap layout with css and js assets
 - flash messages, dynamic titles, partials
 - basic validatations
 - all tests for books
 - navbar with auth stubs
+  <br>
+- `:users` resource (index, new, create actions) and model
+- association `has_many` and `belongs_to`
+- tests for associations and users
+- now books relate to users
 
 ## Setup
 
@@ -40,7 +45,7 @@ Run console:
 % bendle exec hanami console
 ```
 
-__NOTE:__ Use `RUBYOPT='-W0'` for suppress warnings if need.
+**NOTE:** Use `RUBYOPT='-W0'` for suppress warnings if need.
 
 ---
 
