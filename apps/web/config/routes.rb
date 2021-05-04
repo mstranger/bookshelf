@@ -1,5 +1,6 @@
 root to: 'home#index'
 resources :books
+resources :users, only: %i[index new create]
 
 get '/not_implemented', to: 'home#not_implemented'
 

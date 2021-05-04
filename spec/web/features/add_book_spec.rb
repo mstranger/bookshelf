@@ -1,11 +1,9 @@
 require 'features_helper'
 
 RSpec.describe 'Add a book', type: :feature do
-  let(:user) { UserRepository.new.create(email: 'some@mail.com') }
+  let!(:user) { UserRepository.new.create(email: 'some@mail.com') }
 
-  after do
-    BookRepository.new.clear
-  end
+  after { BookRepository.new.clear }
 
   it 'can create a new book' do
     visit '/books/new'

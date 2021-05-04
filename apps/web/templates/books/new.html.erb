@@ -25,6 +25,8 @@
           text_field :author, class: 'form-control'
         end
 
+        # TODO: set default to nil users
+
         values = UserRepository.new.all.map { |u| {u.email => u.id } } .reduce(Hash.new, :merge)
         div class: 'input form-group' do
           label 'User', for: :user_id

@@ -29,4 +29,14 @@ RSpec.describe 'Display correct title for', type: :feature do
     visit "/books/#{book.id}/edit"
     expect(page).to have_title('Bookshelf | Edit book')
   end
+
+  it 'users page' do
+    visit '/users'
+    expect(page).to have_title('Bookshelf | Users')
+  end
+
+  it 'new user page' do
+    visit '/users/new'
+    expect(page).to have_title('Bookshelf | New user')
+  end
 end

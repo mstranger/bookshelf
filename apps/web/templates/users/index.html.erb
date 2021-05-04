@@ -1,0 +1,25 @@
+<h2 class="text-center mb-4">Users</h2>
+
+<% if users.any? %>
+  <table class="table table-striped table-borderless table-sm" id="users">
+    <thead class="table-users-title">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.each_with_index do |user, idx| %>
+        <tr class="user">
+          <th scope="row"><%= idx + 1 %></th>
+          <td><%= user.email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <hr>
+<% end %>
+
+<div class="text-center">
+  <%= link_to 'Add new user', '/users/new', class: 'btn btn-primary' %>
+<div>
