@@ -47,7 +47,7 @@ RSpec/MultipleExpectations:
   Max: 5
 
 RSpec/MultipleMemoizedHelpers:
-  Max: 6
+  Max: 10
 
 RSpec/Capybara/FeatureMethods:
   EnabledMethods: [scenario]

@@ -26,6 +26,7 @@
         end
 
         values = UserRepository.new.all.map { |u| {u.email => u.id } } .reduce(Hash['': nil], :merge)
+        values = { 'Create User first...': nil } if values.size == 1
         div class: 'input form-group' do
           label 'User', for: :user_id
           select :user_id, values, class: 'select-block'

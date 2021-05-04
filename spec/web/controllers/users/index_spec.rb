@@ -2,7 +2,7 @@ RSpec.describe Web::Controllers::Users::Index, type: :action do
   let(:action)   { described_class.new }
   let(:repo)     { UserRepository.new }
   let(:user)     { repo.create(email: 'some@mail.com') }
-  let(:params )  { Hash[] }
+  let(:params)   { Hash[] }
   let(:response) { action.call(params) }
 
   before do

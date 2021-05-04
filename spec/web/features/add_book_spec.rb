@@ -1,12 +1,17 @@
 require 'features_helper'
 
 RSpec.describe 'Add a book', type: :feature do
-  let!(:user) { UserRepository.new.create(email: 'some@mail.com') }
+  let(:user) { UserRepository.new.create(email: 'some@mail.com') }
 
-  after { BookRepository.new.clear }
+  before { UserRepository.new.clear }
+
+  after  { BookRepository.new.clear }
 
   it 'can create a new book' do
+    user
     visit '/books/new'
+
+    expect(page).not_to have_content('Create User first...')
 
     within 'form#book-form' do
       fill_in 'Title',  with: 'Example book'
@@ -34,5 +39,11 @@ RSpec.describe 'Add a book', type: :feature do
     expect(page).to have_content('Title must be filled')
     expect(page).to have_content('Author must be filled')
     expect(page).to have_content('User Id must be filled')
+  end
+
+  it 'display message if no users' do
+    visit '/books/new'
+
+    expect(page).to have_content('Create User first...')
   end
 end
