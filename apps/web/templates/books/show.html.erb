@@ -29,5 +29,5 @@
   <hr>
   <%= link_to 'Back to books', routes.books_path %>
   <span class="divider"></span>
-  <%= link_to 'Edit', "/books/#{book.id}/edit" %>
+  <%= link_to 'Edit', routes.edit_book_path(book.id) %>
 </div>

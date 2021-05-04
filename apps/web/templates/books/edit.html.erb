@@ -14,7 +14,7 @@
     <% end %>
 
     <%=
-      form_for :book, "/books/#{book.id}", method: :patch do
+      form_for :book, routes.book_path(book.id), method: :patch do
         div class: 'input form-group' do
           label      :title
           text_field :title, value: book.title, class: 'form-control'

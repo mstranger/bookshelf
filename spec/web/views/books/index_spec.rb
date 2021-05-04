@@ -15,8 +15,8 @@ RSpec.describe Web::Views::Books::Index, type: :view do
   end
 
   context 'when there are books' do
-    let(:book1)     { Book.new(title: 'Refactoring', author: 'Martin Fowler') }
-    let(:book2)     { Book.new(title: 'Domain Driven Design', author: 'Eric Evans') }
+    let(:book1)     { Book.new(id: 1, title: 'Refactoring', author: 'Martin Fowler') }
+    let(:book2)     { Book.new(id: 2, title: 'Domain Driven Design', author: 'Eric Evans') }
     let(:exposures) { Hash[books: [book1, book2], params: []] }
 
     it 'lists them all' do

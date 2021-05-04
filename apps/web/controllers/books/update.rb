@@ -26,7 +26,7 @@ module Web
             flash[:notice] = 'Book was updated.'
             redirect_to routes.books_path
           else
-            @book = Book.new(params[:book]) # save form field data
+            @book = Book.new(params[:book].merge(id: @book.id)) # save form field data
             self.status = 422
           end
         end

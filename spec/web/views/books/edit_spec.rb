@@ -1,5 +1,5 @@
 RSpec.describe Web::Views::Books::Edit, type: :view do
-  let(:book)      { Book.new(title: 'Sample', author: 'John Doe') }
+  let(:book)      { Book.new(id: 1, title: 'Sample', author: 'John Doe') }
   let(:exposures) { Hash[book: book, params: params] }
   let(:template)  { Hanami::View::Template.new('apps/web/templates/books/edit.html.erb') }
   let(:view)      { described_class.new(template, exposures) }
