@@ -21,6 +21,12 @@ RSpec.describe UserRepository, type: :repository do
     expect(user_repo.last).to respond_to(:books)
   end
 
+  it 'deletes related books when delete user' do
+    user_repo.delete(user_repo.last.id)
+
+    expect(book_repo.all.count).to eq(0)
+  end
+
   it '#find_with_books' do
     u = user_repo.find_with_books(user_repo.last.id)
     titles = [book1[:title], book2[:title]]
