@@ -33,5 +33,6 @@ RSpec.describe 'Add a book', type: :feature do
     expect(page).to have_content('There was a problem with your submission')
     expect(page).to have_content('Title must be filled')
     expect(page).to have_content('Author must be filled')
+    expect(page).to have_content('User Id must be filled')
   end
 end
