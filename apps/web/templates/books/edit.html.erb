@@ -27,10 +27,11 @@
           text_field :author, value: book.author, class: 'form-control'
         end
 
-        values = UserRepository.new.all.map { |u| {u.email => u.id } } .reduce(Hash.new, :merge)
+        values = UserRepository.new.all.map { |u| {u.email => u.id } } .reduce(Hash['': nil], :merge)
+        current_email = UserRepository.new.find(book.user_id).email
         div class: 'input form-group' do
           label 'User', for: :user_id
-          select :user_id, values, class: 'select-block'
+          select :user_id, values, class: 'select-block', options: { selected: values[current_email] }
         end
 
         div class: 'controls text-center pt-2' do

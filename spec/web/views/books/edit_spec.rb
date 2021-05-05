@@ -1,5 +1,6 @@
 RSpec.describe Web::Views::Books::Edit, type: :view do
-  let(:book)      { Book.new(id: 1, title: 'Sample', author: 'John Doe') }
+  let(:user)      { UserRepository.new.create(email: 'some@mail.com') }
+  let!(:book)     { Book.new(id: 1, user_id: user.id, title: 'Sample', author: 'John Doe') }
   let(:exposures) { Hash[book: book, params: params] }
   let(:template)  { Hanami::View::Template.new('apps/web/templates/books/edit.html.erb') }
   let(:view)      { described_class.new(template, exposures) }

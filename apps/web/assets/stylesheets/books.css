@@ -30,7 +30,7 @@
   text-align: right;
 }
 
-.table thead th:last-child {
+#books thead th:last-child {
   text-align: right;
   padding-right: 5rem;
 }
