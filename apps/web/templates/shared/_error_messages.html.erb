@@ -1,0 +1,13 @@
+<!--
+  NOTE: raise error in tests, when use partial in templates
+-->
+<% unless params.valid? %>
+  <div class="errors alert-danger mb-2">
+    <p class="errors-title">There was a problem with your submission</p>
+    <ul class="no-list">
+      <% params.error_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

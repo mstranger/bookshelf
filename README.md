@@ -1,6 +1,6 @@
 # Bookshelf
 
-This is a starter Hanami project with additional steps and actions.
+This is a starter Hanami (1.3) project with additional steps and actions.
 
 ## What is done
 

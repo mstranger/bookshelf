@@ -2,6 +2,8 @@
 
 <div class="row">
   <div class="col-sm-8">
+    <%#= render partial: 'shared/error_messages' %>
+
     <% unless params.valid? %>
       <div class="errors alert-danger mb-2">
         <p class="errors-title">There was a problem with your submission</p>
