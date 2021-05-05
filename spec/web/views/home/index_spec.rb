@@ -1,11 +1,13 @@
 require_relative '../../shared_variables'
 
 RSpec.describe Web::Views::Home::Index, type: :view do
-  let(:flash)      { Hash[] }
-  let(:exposures)  { Hash[format: :html, flash: flash] }
-  let(:template)   { Hanami::View::Template.new('apps/web/templates/home/index.html.erb') }
-  let(:view)       { described_class.new(template, exposures) }
-  let(:rendered)   { view.render }
+  let(:flash)     { Hash[] }
+  let(:env)       { Hash['REQUEST_PATH': '/'] }
+  let(:params)    { OpenStruct.new(env: env) }
+  let(:exposures) { Hash[format: :html, flash: flash, params: params] }
+  let(:template)  { Hanami::View::Template.new('apps/web/templates/home/index.html.erb') }
+  let(:view)      { described_class.new(template, exposures) }
+  let(:rendered)  { view.render }
 
   it 'exposes #format' do
     expect(view.format).to eq exposures.fetch(:format)

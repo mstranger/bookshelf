@@ -14,6 +14,8 @@ RSpec.describe 'List books', type: :feature do
   it 'diplays each book on the page' do
     visit '/books'
 
+    expect(page).to have_current_path('/books')
+
     within '#books' do
       expect(page).to have_selector('.book', count: 2), 'Expected to find 2 books'
     end

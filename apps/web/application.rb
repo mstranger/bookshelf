@@ -19,6 +19,7 @@ module Web
       # When you add new directories, remember to add them here.
       #
       load_paths << [
+        'helpers',
         'controllers',
         'views'
       ]
@@ -258,6 +259,7 @@ module Web
       view.prepare do
         include Hanami::Helpers
         include Web::Assets::Helpers
+        include Web::Helpers::PathHelper
       end
     end
 

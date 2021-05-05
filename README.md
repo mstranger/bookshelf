@@ -20,6 +20,10 @@ users
 - tests for associations and users
 - now books relate to users
 
+main
+
+- custom `current_path` helper
+
 You can find examples of creating users or books in the `db/seed.rb` file.
 
 ## Setup

@@ -19,5 +19,5 @@
 #   title: 'book title'
 # )
 
-## Delete all books for this case (all books relate to users) 
+## Delete all books for this case (all books relate to users)
 # UserRepository.new.clear
